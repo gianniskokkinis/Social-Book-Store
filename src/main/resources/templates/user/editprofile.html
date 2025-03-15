@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- LINK CSS HERE -->
+    <link rel="stylesheet" href="editprofilestyle.css">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+
+	<title>User Dashboard</title>
+
+
+  <style>
+
+body {
+    background: #676f84
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+
+.bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:focus {
+    outline: none;
+  }
+  
+  .bn632-hover.bn25 {
+    background-image: linear-gradient(
+      to right,
+      #29323c,
+      #485563,
+      #2b5876,
+      #4e4376
+    );
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+  }
+
+
+  .bn632-hover {
+  width: 160px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+  .bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+
+  .bn632-hover:focus {
+    outline: none;
+  }
+
+  .bn632-hover.bn23 {
+    background-image: linear-gradient(
+      to right,
+      #009245,
+      #fcee21,
+      #00a8c5,
+      #d9e021
+    );
+    box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
+  }
+
+
+  table.scrolldown {
+        width: 100%;
+        height: 100%;
+  }
+
+  /* To display the block as level element */
+  table.scrolldown tbody,
+        table.scrolldown thead {
+            display: block;
+        }
+  
+  
+  table.scrolldown tbody {
+ 
+  /* Set the height of table body */
+  height: 200px;
+
+  /* Set vertical scroll */
+  overflow-y: auto;
+
+  /* Hide the horizontal scroll */
+  overflow-x: hidden;
+  }
+
+
+
+  
+  .bin-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 15px;
+        background-color: rgb(255, 95, 95);
+        cursor: pointer;
+        border: 3px solid rgb(255, 201, 201);
+        transition-duration: 0.3s;
+        
+        }
+        .bin-bottom {
+        width: 10px;
+        }
+        .bin-top {
+        width: 10px;
+        transform-origin: right;
+        transition-duration: 0.3s;
+        }
+        .bin-button:hover .bin-top {
+        transform: rotate(45deg);
+        }
+        .bin-button:hover {
+        background-color: rgb(255, 0, 0);
+        }
+        .bin-button:active {
+        transform: scale(0.9);
+        }
+
+        
+
+
+
+  </style>
+</head>
+
+
+<body>
+
+  <!-- nav menu -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Social Bookstore </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+        <!-- THIS IS USER MENU -->
+        <div class="nav-item dropdown">
+          <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://www.svgrepo.com/show/527946/user-circle.svg" alt="Bootstrap" width="35" height="35">
+          </a>
+          <ul class="dropdown-menu">
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- profile form here here -->
+
+  <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+              <img class="rounded-circle mt-5" width="150px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgL_TuJtRyIoMBZ0sweo6V8-1TnAaLyuIoan4BLCBmTQ&s">
+              <span class="font-weight-bold" th:text="${usernametext}">
+                
+              </span>
+              <span> 
+                
+              </span>
+        </div>
+        </div>
+        <form class="col-md-5 border-right" th:action="@{/user/saveprofile}" th:object="${userprofile}" method="post">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile</h4>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">Fullname</label><input type="text" name="userFullname" id="userFullname" class="form-control" placeholder="Fullname" th:field="*{fullname}" required></div>
+                    <div class="col-md-12"><label class="labels">Address</label><input type="text" name="address" class="form-control" placeholder="Enter your address" th:field="*{address}" required></div>
+                    <div class="col-md-12"><label class="labels">Age</label><input type="number" name="age" class="form-control" placeholder="Enter your age" th:field="*{age}" min="1" max="150" required></div>
+                    <div class="col-md-12"><label class="labels">Phone number</label><input type="tel" name="phoneNumber" class="form-control"  placeholder="Enter your phone number" th:field="*{phoneNumber}" pattern="[0-9]{10}" required></div>
+                    
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" name="state" placeholder="state"  th:field="*{state}" required></div>
+                    <div class="col-md-6"><label class="labels">Postcode</label><input type="text" class="form-control" name="postcode" placeholder="Where are you?" th:field="*{postcode}" required></div>
+                </div>
+                <div class="mt-5 text-center"><button class="bn632-hover bn25">Save</button></div>
+            </div>
+          </form>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Favorite authors </span></div><br>
+                    <div class="col-md-12">
+                     
+                      <table class="table scrolldown ">
+                        <thead>
+                          <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                          <tr th:each="author : ${favauthors}">
+                            <th scope="row" th:text="${author.name}">author name</th>
+                            <td>
+                              
+                              <a class="bin-button" th:href="@{/user/delete-author-from-favourite-authors(userProfileID=${userprofile.id}, authorID=${author.id})}">
+                                <svg
+                                  class="bin-top"
+                                  viewBox="0 0 39 7"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
+                                  <line
+                                    x1="12"
+                                    y1="1.5"
+                                    x2="26.0357"
+                                    y2="1.5"
+                                    stroke="white"
+                                    stroke-width="3"
+                                  ></line>
+                                </svg>
+                                <svg
+                                  class="bin-bottom"
+                                  viewBox="0 0 33 39"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <mask id="path-1-inside-1_8_19" fill="white">
+                                    <path
+                                      d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"
+                                    ></path>
+                                  </mask>
+                                  <path
+                                    d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"
+                                    fill="white"
+                                    mask="url(#path-1-inside-1_8_19)"
+                                  ></path>
+                                  <path d="M12 6L12 29" stroke="white" stroke-width="4"></path>
+                                  <path d="M21 6V29" stroke="white" stroke-width="4"></path>
+                                </svg>
+                            </a>
+
+                            </td>
+                          </tr>
+                          
+                          
+                        </tbody>
+                      </table>
+
+                    </div> 
+
+                    <br>
+
+                    
+            </div>
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Favorite book categories </span></div><br>
+                <div class="col-md-12">
+                  <label class="labels">Select category</label>
+                  
+                  <form th:action="@{/user/save-category-to-favourite-categories}" method="post">
+                    <input type="hidden" name="userProfileID" th:value="${userprofile.id}">
+                    <select class="form-select" aria-label="Default select example" name="category" >
+                  
+                
+                      <option th:each="showCategory: ${bookcategories}" th:value="${showCategory.name}" th:text="${showCategory.name}"></option>
+                      
+                    </select>
+
+                    
+                    <button class="btn btn-outline-success" type="submit">Add</button>
+                    
+                  </form>
+                </div> 
+                
+                <br>
+
+
+                <table class="table scrolldown ">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-group-divider">
+                    <tr th:each="categor : ${favcategories}">
+                      <th scope="row" th:text="${categor.name}">category name</th>
+                      <td>
+                        
+                        <a class="bin-button" th:href="@{/user/delete-category-from-favourite-categories(userProfileID=${userprofile.id}, categoryID=${categor.id})}">
+                          <svg
+                            class="bin-top"
+                            viewBox="0 0 39 7"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
+                            <line
+                              x1="12"
+                              y1="1.5"
+                              x2="26.0357"
+                              y2="1.5"
+                              stroke="white"
+                              stroke-width="3"
+                            ></line>
+                          </svg>
+                          <svg
+                            class="bin-bottom"
+                            viewBox="0 0 33 39"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <mask id="path-1-inside-1_8_19" fill="white">
+                              <path
+                                d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"
+                              ></path>
+                            </mask>
+                            <path
+                              d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"
+                              fill="white"
+                              mask="url(#path-1-inside-1_8_19)"
+                            ></path>
+                            <path d="M12 6L12 29" stroke="white" stroke-width="4"></path>
+                            <path d="M21 6V29" stroke="white" stroke-width="4"></path>
+                          </svg>
+                      </a>
+
+                      </td>
+                    </tr>
+                    
+                    
+                  </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+    
+
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="https://unpkg.com/tailwindcss@1.9.6/dist/tailwind.min.css" rel="stylesheet">
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+
+	<title>Notifications</title>
+
+    <style media="screen">
+        
+        .bin-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 55px;
+        height: 55px;
+        border-radius: 15px;
+        background-color: rgb(255, 95, 95);
+        cursor: pointer;
+        border: 3px solid rgb(255, 201, 201);
+        transition-duration: 0.3s;
+        
+        }
+        .bin-bottom {
+        width: 15px;
+        }
+        .bin-top {
+        width: 17px;
+        transform-origin: right;
+        transition-duration: 0.3s;
+        }
+        .bin-button:hover .bin-top {
+        transform: rotate(45deg);
+        }
+        .bin-button:hover {
+        background-color: rgb(255, 0, 0);
+        }
+        .bin-button:active {
+        transform: scale(0.9);
+        }
+
+
+    </style>
+
+</head>
+
+
+<body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
+    <body class="antialiased font-sans bg-gray-200">
+    <div class="container mx-auto px-4 sm:px-8">
+        <div class="py-8">
+            <div>
+                <h2 class="text-2xl font-semibold leading-tight">Notifications</h2>
+            </div>
+            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+
+                    <table class="min-w-full leading-normal">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Book
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Info
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Date
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Action
+                                </th>
+                                
+                            </tr>
+                        </thead>
+
+
+                        <!-- here we are making the th -->
+                        <tbody>
+                            <tr th:each="notification : ${mynotifications}">
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap" th:text="${notification.bookTitle}"></p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" >
+                                    <p class="text-gray-900 whitespace-no-wrap" th:text="${notification.description}">
+        
+                                    </p>    
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap" th:text="${notification.notDate}">
+        
+                                    </p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <span class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
+                                        
+                                        <a class="bin-button" th:href="@{/store/delete-notification(notificationID=${notification.id})}">
+                                            <svg
+                                              class="bin-top"
+                                              viewBox="0 0 39 7"
+                                              fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                              <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
+                                              <line
+                                                x1="12"
+                                                y1="1.5"
+                                                x2="26.0357"
+                                                y2="1.5"
+                                                stroke="white"
+                                                stroke-width="3"
+                                              ></line>
+                                            </svg>
+                                            <svg
+                                              class="bin-bottom"
+                                              viewBox="0 0 33 39"
+                                              fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                              <mask id="path-1-inside-1_8_19" fill="white">
+                                                <path
+                                                  d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"
+                                                ></path>
+                                              </mask>
+                                              <path
+                                                d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"
+                                                fill="white"
+                                                mask="url(#path-1-inside-1_8_19)"
+                                              ></path>
+                                              <path d="M12 6L12 29" stroke="white" stroke-width="4"></path>
+                                              <path d="M21 6V29" stroke="white" stroke-width="4"></path>
+                                            </svg>
+                                        </a>
+                                          
+
+
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+
+	<title>Store</title>
+
+  <style media="screen">
+@import url('https://fonts.googleapis.com/css?family=Poppins:700');
+.blob {
+    
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #023F92;
+    width: 30vmax;
+    z-index: -1;
+    animation: move 10s ease-in-out infinite;
+    transform-origin: 50% 50%;
+  }
+  
+  @keyframes move {
+    0%   { transform: scale(1)   translate(10px, -30px); }
+    38%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    40%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+    78%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+    100% { transform: scale(1)   translate(10px, -30px); }
+  }
+
+
+
+  .bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:focus {
+    outline: none;
+  }
+  
+  .bn632-hover.bn22 {
+    background-image: linear-gradient(
+      to right,
+      #0ba360,
+      #3cba92,
+      #30dd8a,
+      #2bb673
+    );
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+  }
+
+
+  .bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:focus {
+    outline: none;
+  }
+  
+  .bn632-hover.bn21 {
+    background-image: linear-gradient(
+      to right,
+      #fc6076,
+      #ff9a44,
+      #ef9d43,
+      #e75516
+    );
+    box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+  }
+
+
+  </style>
+</head>
+
+<body style="background-color: #444444;">
+
+
+    <!-- nav menu -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Social Bookstore </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Users</a>
+          </li>
+        </ul>
+
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search a book" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> 
+
+
+        <!-- This is for notification -->
+        <div class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/img/notification.svg" alt="Bootstrap" width="35" height="35">
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Receive  <img src="/img/ReceiveRequest.svg" alt="Bootstrap" width="30" height="24"></a></li>
+            <!-- <li><a class="dropdown-item" href="#">Edit</a></li> -->
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">View my Request</a></li>
+          </ul>
+        </div>
+
+        
+        <!-- THIS IS FOR REQUESTS -->
+        <div class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/img/request.svg" alt="Bootstrap" width="35" height="35">
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Receive  <img src="/img/ReceiveRequest.svg" alt="Bootstrap" width="30" height="24"></a></li>
+            <!-- <li><a class="dropdown-item" href="#">Edit</a></li> -->
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">View my Request</a></li>
+          </ul>
+        </div>
+
+        
+        <!-- THIS IS USER MENU -->
+        <div class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/img/user.svg" alt="Bootstrap" width="35" height="35">
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/user/editprofile}">Edit</a></li>
+            <!-- <li><a class="dropdown-item" href="#">Edit</a></li> -->
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+          </ul>
+        </div>
+        <div>
+          <img src="/img/blank.svg" alt="Bootstrap" width="120" height="35">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+  
+      <!-- Table -->
+
+      <table class="table table-hover">
+        <tbody>
+          <tr th:each="book, iterStat : ${bookList}" th:if="${iterStat.index % 3 == 0}">
+
+
+            <th scope="row">
+                <div class="card text-bg-secondary mb-3" style="background-image: url('/img/book_thumbail.jpg');">
+                    <div class="card-body text-center">
+                      <h5 class="card-title" th:text="${book.title}"></h5>
+                      <p class="card-text" th:text="${book.category.name}"></p>
+                      <p class="card-text" th:text="${book.summary}"></p>
+                      <p class="card-text"><small class="text-body-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" th:text="${book.userProfile.username}"> 
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                      </svg></small></p>
+                      
+                      <div th:each="author : ${book.Authors}">
+                        <p th:text="${author.name}"></p>
+
+                      </div>
+
+                      <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
+                        <div class="g-col-2"><a th:href="@{/store/request(bookID=${book.id})}"><button class="bn632-hover bn22" >Send request</button></a><a th:href="@{/store/viewprofile(bookID=${book.id})}"><button class="bn632-hover bn21">View profile</button></a></div>
+                      </div>
+                      
+                    </div>
+            </th>
+
+
+            <th scope="row" th:if="${(iterStat.index + 1) < bookList.size()}">
+              <div class="card text-bg-secondary mb-3" style="background-image: url('/img/book_thumbail.jpg');">
+                  <div class="card-body text-center">
+                    <h5 class="card-title" th:text="${bookList[iterStat.index + 1].title}"></h5>
+                    <p class="card-text" th:text="${bookList[iterStat.index + 1].category.name}"></p>
+                    <p class="card-text" th:text="${bookList[iterStat.index + 1].summary}"></p>
+                    <p class="card-text"><small class="text-body-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" th:text="${book.userProfile.username}"> 
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                    </svg></small></p>
+                    
+                    <div th:each="author : ${book.Authors}">
+                      <p th:text="${author.name}"></p>
+
+                    </div>
+
+                    <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
+                      <div class="g-col-2"><a th:href="@{/store/request(bookID=${bookList[iterStat.index + 1].id})}"><button class="bn632-hover bn22" >Send request</button></a><a th:href="@{/store/viewprofile(bookID=${bookList[iterStat.index + 1].id})}"><button class="bn632-hover bn21">View profile</button></a></div>
+                    </div>
+                    
+                  </div>
+            </th>
+
+
+            <th scope="row" th:if="${(iterStat.index + 2) < bookList.size()}">
+              <div class="card text-bg-secondary mb-3" style="background-image: url('/img/book_thumbail.jpg');">
+                  <div class="card-body text-center">
+                    <h5 class="card-title" th:text="${bookList[iterStat.index + 2].title}"></h5>
+                    <p class="card-text" th:text="${bookList[iterStat.index + 2].category.name}"></p>
+                    <p class="card-text" th:text="${bookList[iterStat.index + 2].summary}"></p>
+                    <p class="card-text"><small class="text-body-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" th:text="${book.userProfile.username}"> 
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                    </svg></small></p>
+                    
+                    <div th:each="author : ${book.Authors}">
+                      <p th:text="${author.name}"></p>
+
+                    </div>
+
+                    <div class="grid text-center" style="--bs-columns: 4; --bs-gap: 5rem;">
+                      <div class="g-col-2"><a th:href="@{/store/request(bookID=${bookList[iterStat.index + 2].id})}"><button class="bn632-hover bn22" >Send request</button></a><a th:href="@{/store/viewprofile(bookID=${bookList[iterStat.index + 2].id})}"><button class="bn632-hover bn21">View profile</button></a></div>
+                    </div>
+                    
+                  </div>
+            </th>
+
+          </tr>
+        </tbody>
+      </table>
+</body>
+</html>

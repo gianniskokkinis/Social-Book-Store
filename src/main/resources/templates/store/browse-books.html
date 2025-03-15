@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head>
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="https://unpkg.com/tailwindcss@1.9.6/dist/tailwind.min.css" rel="stylesheet">
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+
+    <title>Search book</title>
+
+
+    <style media="screen">
+
+
+
+                /* 
+        =========================
+        Fonts
+        =========================
+
+        font-family: 'Outfit', sans-serif;
+
+        */
+
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+        /* 
+        ========================
+        Variables
+        ========================
+        */
+
+
+        :root {
+            
+            font-size: 15px;
+            
+            /* Primary */
+            --var-soft-blue: hsl(215, 51%, 70%);
+            --var-cyan: hsl(178, 100%, 50%);
+            /* Neutral */
+            --var-main-darkest: hsl(217, 54%, 11%);
+            --var-card-dark: hsl(216, 50%, 16%);
+            --var-line-dark: hsl(215, 32%, 27%);
+            --var-lightest: white;
+            
+            /* Fonts */
+            
+            --var-heading: normal normal 600 1.5em/1.6em 'Outfit', sans-serif;
+            
+            --var-small-heading: normal normal 400 1em/1em 'Outfit', sans-serif;
+            
+            --var-para: normal normal 300 1em/1.55em 'Outfit', sans-serif;
+        }
+
+        /* 
+        =======================
+        Setup
+        =======================
+        */
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+            margin: 0;
+        }
+
+        body {
+            background-color: var(--var-main-darkest);
+        }
+
+        img {
+            width: 100%;
+            border-radius: 15px;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* 
+
+        Eye view
+
+        https://i.postimg.cc/9MtT4GZY/view.png' border='0' alt='view */
+
+        /*
+        =========================
+        Font Styling
+        =========================
+        */
+
+        h1 {
+            font: var(--var-heading);
+            color: var(--var-lightest);
+            padding: 1.2em 0;
+        }
+
+
+        h2 {
+            font: var(--var-small-heading);
+            color: var(--var-lightest);
+            /* padding on .coin-base */
+        }
+
+        h3{
+          color: white;
+          font-size: large;
+          text-align: center;
+        }
+
+        p {
+            font: var(--var-para);
+            color: var(--var-soft-blue);
+        }
+
+        span {
+            color: white;
+        }
+
+        a{
+          cursor: pointer;
+        }
+        /* 
+        =====================
+        Classes
+        =====================
+        */
+
+        /* LAYOUT */
+
+        .card-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 2em auto;
+            background-color: var(--var-card-dark);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            padding: 2rem;
+        }
+
+        div.flex-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        div.coin-base, .time-left, .card-attribute {
+            display: flex;
+            align-items: center;
+            padding: 1em 0;
+        }
+
+        .card-attribute {
+            padding-bottom: 1.5em;
+            border-top: 2px solid var(--var-line-dark);
+        }
+
+        a.hero-image-container {
+            position: relative;
+            display: block;
+        }
+
+
+
+        /* Details */
+
+        img.eye {
+            position: absolute;
+            width: 100%;
+            max-width: 2em;
+            top: 44%;
+            left: 43%;
+        }
+
+        @media (min-width:400px) {
+        img.eye {
+            max-width: 3em;
+        }
+        }
+
+        .hero-image-container::after {
+            content: '';
+            background-image: url("https://i.postimg.cc/9MtT4GZY/view.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 5rem;
+            background-color: hsla(178, 100%, 50%, 0.3);
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .hero-image-container:hover::after {
+        opacity: 1;
+        }
+
+        .small-image {
+            width: 1.2em;
+            margin-right: .5em;
+        }
+
+        .small-avatar {
+            width: 2em;
+            border-radius: 200px;
+            outline: 2px solid white;
+            margin-right: 1.4em;
+        }
+
+        div.attribution {
+            margin: 0 auto;
+            width: 100%;
+            font: var(--var-para);
+            text-align: center;
+            padding: 1.5em 0 4em 0;
+            color: var(--var-line-dark);
+        }
+        .attribution a {
+            color: var(--var-soft-blue);
+        }
+
+        @media (min-width:600px) {
+            body {
+                font-size: 18px;
+            }
+        }
+
+
+        .shadow__btn {
+        padding: 10px 20px;
+        border: none;
+        font-size: 13px;
+        color: #fff;
+        border-radius: 7px;
+        letter-spacing: 4px;
+        font-weight: 700;
+        text-transform: uppercase;
+        transition: 0.5s;
+        transition-property: box-shadow;
+        }
+
+        .shadow__btn {
+        background: rgb(0,140,255);
+        box-shadow: 0 0 25px rgb(0,140,255);
+        }
+
+        .shadow__btn:hover {
+        box-shadow: 0 0 5px rgb(0,140,255),
+                    0 0 25px rgb(0,140,255),
+                    0 0 50px rgb(0,140,255),
+                    0 0 100px rgb(0,140,255);
+        }
+
+
+
+        .paste-button {
+            position: relative;
+            display: block;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .button {
+            background-color: rgb(0,140,255);
+            color: #212121;
+            padding: 10px 15px;
+            font-size: 15px;
+            font-weight: bold;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            cursor: pointer;
+            }
+
+            .dropdown-content {
+            display: none;
+            font-size: 13px;
+            position: absolute;
+            z-index: 1;
+            min-width: 200px;
+            background-color: #212121;
+            border: 2px solid rgb(0,140,255);
+            border-radius: 0px 15px 15px 15px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            .dropdown-content a {
+            color: rgb(0,140,255);
+            padding: 8px 10px;
+            text-decoration: none;
+            display: block;
+            transition: 0.1s;
+            }
+
+            .dropdown-content a:hover {
+            background-color: rgb(0,140,255);
+            color: #212121;
+            }
+
+            .dropdown-content a:focus {
+            background-color: #212121;
+            color: rgb(0,140,255);
+            }
+
+            .dropdown-content #top:hover {
+            border-radius: 0px 13px 0px 0px;
+            }
+
+            .dropdown-content #bottom:hover {
+            border-radius: 0px 0px 13px 13px;
+            }
+
+            .paste-button:hover button {
+            border-radius: 15px 15px 0px 0px;
+            }
+
+            .paste-button:hover .dropdown-content {
+            display:contents;
+            }
+
+
+
+            .nav-icons{
+              width: 10%;
+              height: 10%;
+            }
+
+
+            
+
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+  <!-- nav menu -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Social Bookstore </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/user/dashboard}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/store}">Store</a>
+          </li>
+        </ul>
+
+        <form class="d-flex" role="search" th:action="@{/store/search-book}" method="get">
+          <input class="form-control me-2" th:value="${keywords}" type="search" placeholder="Search a book" aria-label="Search" name="search-input">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> 
+
+
+        <!-- This is for notification -->
+        <div class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg width="32px" height="32px" viewBox="-1.5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>notification_bell [#1397]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-181.000000, -720.000000)" fill="#065b85"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M137.75,574 L129.25,574 L129.25,568 C129.25,565.334 131.375,564 133.498937,564 L133.501063,564 C135.625,564 137.75,565.334 137.75,568 L137.75,574 Z M134.5625,577 C134.5625,577.552 134.0865,578 133.5,578 C132.9135,578 132.4375,577.552 132.4375,577 L132.4375,576 L134.5625,576 L134.5625,577 Z M140.9375,574 C140.351,574 139.875,573.552 139.875,573 L139.875,568 C139.875,564.447 137.359,562.475 134.5625,562.079 L134.5625,561 C134.5625,560.448 134.0865,560 133.5,560 C132.9135,560 132.4375,560.448 132.4375,561 L132.4375,562.079 C129.641,562.475 127.125,564.447 127.125,568 L127.125,573 C127.125,573.552 126.649,574 126.0625,574 C125.476,574 125,574.448 125,575 C125,575.552 125.476,576 126.0625,576 L130.3125,576 L130.3125,577 C130.3125,578.657 131.739438,580 133.5,580 C135.260563,580 136.6875,578.657 136.6875,577 L136.6875,576 L140.9375,576 C141.524,576 142,575.552 142,575 C142,574.448 141.524,574 140.9375,574 L140.9375,574 Z" id="notification_bell-[#1397]"> </path> </g> </g> </g> </g></svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/store/view-my-notifications}" >view all notifications</a></li>
+          </ul>
+        </div>
+
+
+
+        <!-- THIS IS FOR REQUESTS -->
+        <div class="nav-item dropdown">
+          <a class="nav-link" th:href="@{/user/view-my-bookoffers}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg width="32px" height="32px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#065b85" d="M241.844 28.625l-21.188 5.063L33.25 78.53l-9.594 2.282 2.813 9.47 54.718 184.03 6.156 20.782 10.875-18.75 36.624-63.125 39.344 22.655 9.375-16.188-47.47-27.312L128 187.72l-4.656 8.06-30.406 52.47-45.75-153.844 156.625-37.47-30.344 52.345-4.69 8.126 8.126 4.656L332.75 211.75l-17.594 30.344 16.22 9.312 22.25-38.375 4.687-8.124-8.125-4.656-155.844-89.688 36.594-63.093 10.906-18.845zm-28.25 176.47l-57.438 99.31 155.22 89.5 8.093 4.658-4.69 8.093-44.06 76.25 218.81-52.5-63.874-215.47-44.094 76.25-4.656 8.064-8.094-4.656-155.218-89.5z"></path></g></svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/user/view-my-bookoffers}">Receive Requests</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" th:href="@{/user/send-requests}">Send Request</a></li>
+          </ul>
+        </div>
+
+        
+        <!-- THIS IS USER MENU -->
+        <div class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.5" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" fill="#1C274C"></path> <path d="M16.807 19.0112C15.4398 19.9504 13.7841 20.5 12 20.5C10.2159 20.5 8.56023 19.9503 7.193 19.0111C6.58915 18.5963 6.33109 17.8062 6.68219 17.1632C7.41001 15.8302 8.90973 15 12 15C15.0903 15 16.59 15.8303 17.3178 17.1632C17.6689 17.8062 17.4108 18.5964 16.807 19.0112Z" fill="#1C274C"></path> <path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3432 6 9.00004 7.34315 9.00004 9C9.00004 10.6569 10.3432 12 12 12Z" fill="#1C274C"></path> </g></svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/user/editprofile}">Edit</a></li>
+            <!-- <li><a class="dropdown-item" href="#">Edit</a></li> -->
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+          </ul>
+        </div>
+        <div>
+          <svg width="120px" height="32px" viewBox="-1.5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>notification_bell [#1397]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-181.000000, -720.000000)" fill="#ffffff"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M137.75,574 L129.25,574 L129.25,568 C129.25,565.334 131.375,564 133.498937,564 L133.501063,564 C135.625,564 137.75,565.334 137.75,568 L137.75,574 Z M134.5625,577 C134.5625,577.552 134.0865,578 133.5,578 C132.9135,578 132.4375,577.552 132.4375,577 L132.4375,576 L134.5625,576 L134.5625,577 Z M140.9375,574 C140.351,574 139.875,573.552 139.875,573 L139.875,568 C139.875,564.447 137.359,562.475 134.5625,562.079 L134.5625,561 C134.5625,560.448 134.0865,560 133.5,560 C132.9135,560 132.4375,560.448 132.4375,561 L132.4375,562.079 C129.641,562.475 127.125,564.447 127.125,568 L127.125,573 C127.125,573.552 126.649,574 126.0625,574 C125.476,574 125,574.448 125,575 C125,575.552 125.476,576 126.0625,576 L130.3125,576 L130.3125,577 C130.3125,578.657 131.739438,580 133.5,580 C135.260563,580 136.6875,578.657 136.6875,577 L136.6875,576 L140.9375,576 C141.524,576 142,575.552 142,575 C142,574.448 141.524,574 140.9375,574 L140.9375,574 Z" id="notification_bell-[#1397]"> </path> </g> </g> </g> </g></svg>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+  <!-- Filter here -->
+
+  <br>
+
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+
+        <div class="paste-button">
+            <button class="button">Search &nbsp; ▼</button>
+            <div class="dropdown-content">
+            <a id="top" th:href="@{/store/search-book-by-fav-categories}">Search by Favourite Categories</a>
+            <a id="middle" th:href="@{/store/search-book-by-fav-authors}">Search by Favourite Authors</a>
+            
+            </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="col">
+
+        <div class="paste-button">
+            <button class="button">Recommended &nbsp; ▼</button>
+            <div class="dropdown-content">
+            <a id="top" th:href="@{/store/recommened-book-by-fav-categories}">Recommended by Favourite Categories</a>
+            <a id="middle" th:href="@{/store/recommened-book-by-fav-authors}">Recommended by Favourite Authors</a>
+            </div>
+        </div>
+
+
+      </div>
+
+
+
+      <div class="col">
+
+
+        <div class="paste-button">
+            <button class="button">Browse Category &nbsp; ▼</button>
+            <div class="dropdown-content" th:each="categ : ${bookCategories}">
+            <a id="top" th:href="@{/store/get-books-from-category-name(categoryname=${categ.name})}"  th:text="${categ.name}"></a>
+            </div>
+        </div>
+
+
+      </div>
+      <div class="col">
+
+
+        <div class="paste-button">
+            <button class="button">Browse Author &nbsp; ▼</button>
+            <div class="dropdown-content" th:each="autho : ${authors}">
+            <a id="top" th:href="@{/store/get-books-from-author-name(authorname=${autho.name})}" th:text="${autho.name}">Author 1</a>
+            </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+    <br><br>
+  
+
+
+    <h3 th:text="${warning_message}"> </h3>
+
+
+    <!-- this is the main cards -->
+
+
+    <table class="table table-dark">
+      <tbody>
+        <tr th:each="book, iterStat : ${bookList}" th:if="${iterStat.index % 3 == 0}">
+          <th scope="row">
+
+
+              <div class="card-container">
+                <img class="hero-image" src="https://images.unsplash.com/photo-1551029506-0807df4e2031?q=80&w=1634&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Spinning glass cube"/>
+                <main class="main-content">
+                  <h1 th:text="${book.title}"></h1>
+                  <h2 th:text="${book.category.name}"></h2><br>
+                  <p th:text="${book.summary}"></p>
+                  <div class="flex-row">
+                    <div class="coin-base">
+                      <img src="https://cdn-icons-png.freepik.com/512/3177/3177440.png" alt="Ethereum" class="small-image"/>
+                      <h2 th:text="${book.userProfile.username}"> </h2>
+                    </div>
+                    <div class="time-left">
+                      <img src="https://i.postimg.cc/prpyV4mH/clock-selection-no-bg.png" alt="clock" class="small-image"/>
+                      <p th:text="${book.publish_date}"></p>
+                    </div>
+                  </div>
+                </main>
+                <div class="card-attribute" th:each="author : ${book.Authors}">
+                  <img src="https://cdn-icons-png.freepik.com/512/2554/2554282.png" alt="avatar" class="small-avatar"/>
+                  <p> Written by <span th:text="${author.name}"> Author </span></p>
+                </div>
+
+                <div class="flex-row">
+                    <div class="coin-base" th:if="${myusername != book.userProfile.username}">
+                        <a class="shadow__btn" th:href="@{/store/request(bookID=${book.id})}">
+                            Request
+                        </a>
+                    </div>
+                    <div class="time-left">
+                        <a class="shadow__btn" th:href="@{/store/viewprofile(bookID=${book.id})}">
+                            View profile
+                        </a>
+                  </div>
+            </div>
+
+        </th>
+
+
+        <th scope="row" th:if="${(iterStat.index + 1) < bookList.size()}">
+          
+            <div class="card-container">
+              <img class="hero-image" src="https://images.unsplash.com/photo-1551029506-0807df4e2031?q=80&w=1634&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Spinning glass cube"/>
+              <main class="main-content">
+                <h1 th:text="${bookList[iterStat.index + 1].title}"></h1>
+                <h2 th:text="${bookList[iterStat.index + 1].category.name}"></h2><br>
+                <p th:text="${bookList[iterStat.index + 1].summary}"></p>
+                <div class="flex-row">
+                  <div class="coin-base">
+                    <img src="https://cdn-icons-png.freepik.com/512/3177/3177440.png" alt="Ethereum" class="small-image"/>
+                    <h2 th:text="${bookList[iterStat.index + 1].userProfile.username}"></h2>
+                  </div>
+                  <div class="time-left">
+                    <img src="https://i.postimg.cc/prpyV4mH/clock-selection-no-bg.png" alt="clock" class="small-image"/>
+                    <p th:text="${bookList[iterStat.index + 1].publish_date}"></p>
+                  </div>
+                </div>
+              </main>
+              <div class="card-attribute" th:each="author : ${bookList[iterStat.index + 1].Authors}">
+                <img src="https://cdn-icons-png.freepik.com/512/2554/2554282.png" alt="avatar" class="small-avatar"/>
+                <p>Written by <span th:text="${author.name}"></span></p>
+              </div>
+
+              <div class="flex-row">
+                  <div class="coin-base" th:if="${myusername != bookList[iterStat.index + 1].userProfile.username}">
+                      <a class="shadow__btn" th:href="@{/store/request(bookID=${bookList[iterStat.index + 1].id})}">
+                          Request
+                      </a>
+                  </div>
+                  <div class="time-left">
+                      <a class="shadow__btn" th:href="@{/store/viewprofile(bookID=${bookList[iterStat.index + 1].id})}">
+                          View profile
+                      </a>
+                </div>
+            </div>
+
+
+
+          </th>
+
+          <th scope="row" th:if="${(iterStat.index + 2) < bookList.size()}">
+
+            <div class="card-container">
+              <img class="hero-image" src="https://images.unsplash.com/photo-1551029506-0807df4e2031?q=80&w=1634&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Spinning glass cube"/>
+              <main class="main-content">
+                <h1 th:text="${bookList[iterStat.index + 2].title}"> </h1>
+                <h2  th:text="${bookList[iterStat.index + 2].category.name}"></h2><br>
+                <p th:text="${bookList[iterStat.index + 2].summary}"></p>
+                <div class="flex-row">
+                  <div class="coin-base">
+                    <img src="https://cdn-icons-png.freepik.com/512/3177/3177440.png" alt="Ethereum" class="small-image"/>
+                    <h2 th:text="${bookList[iterStat.index + 2].userProfile.username}"> </h2>
+                  </div>
+                  <div class="time-left">
+                    <img src="https://i.postimg.cc/prpyV4mH/clock-selection-no-bg.png" alt="clock" class="small-image"/>
+                    <p th:text="${bookList[iterStat.index + 2].publish_date}"></p>
+                  </div>
+                </div>
+              </main>
+              <div class="card-attribute" th:each="author : ${bookList[iterStat.index + 2].Authors}">
+                <img src="https://cdn-icons-png.freepik.com/512/2554/2554282.png" alt="avatar" class="small-avatar"/>
+                <p>Written by <span th:text="${author.name}"> </span></p>
+              </div>
+
+              <div class="flex-row">
+                  <div class="coin-base" th:if="${myusername != bookList[iterStat.index + 2].userProfile.username}">
+                      <a class="shadow__btn" th:href="@{/store/request(bookID=${bookList[iterStat.index + 2].id})}">
+                          Request
+                      </a>
+                  </div>
+                  <div class="time-left">
+                      <a class="shadow__btn" th:href="@{/store/viewprofile(bookID=${bookList[iterStat.index + 2].id})}">
+                          View profile
+                      </a>
+                </div>
+            </div>
+          </th>
+    </tr>
+    </tbody>
+    </table>
+
+
+        
+
+      </body>
+
+
+
+</body>
+
+
+
+</html>

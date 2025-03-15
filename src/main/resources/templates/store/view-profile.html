@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+
+	<title>View Profile</title>
+
+
+    <style media="screen">
+
+
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #172234;
+        font-family: Montserrat, sans-serif;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    h3 {
+        margin: 10px 0;
+    }
+
+    h6 {
+        margin: 5px 0;
+        text-transform: uppercase;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .card-container {
+        background-color: #495d7e;
+        border-radius: 5px;
+        box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+        color: #B3B8CD;
+        padding-top: 30px;
+        position: relative;
+        width: 350px;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .card-container .pro {
+        color: #231E39;
+        background-color: #FEBB0B;
+        border-radius: 3px;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 3px 7px;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+
+    .card-container .round {
+        padding: 7px;
+    }
+
+    a.primary {
+        background-color: #03BFCB;
+        border: 1px solid #03BFCB;
+        border-radius: 3px;
+        color: #231E39;
+        font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        padding: 10px 25px;
+    }
+
+    a.primary.ghost {
+        background-color: transparent;
+        color: #02899C;
+    }
+
+    .skills {
+        background-color: #1F1A36;
+        text-align: left;
+        padding: 15px;
+        margin-top: 30px;
+    }
+
+    .skills ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .skills ul li {
+        border: 1px solid #2D2747;
+        border-radius: 2px;
+        display: inline-block;
+        font-size: 12px;
+        margin: 0 7px 7px 0;
+        padding: 7px;
+    }
+
+    footer {
+        background-color: #222;
+        color: #fff;
+        font-size: 14px;
+        bottom: 0;
+        position: fixed;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 999;
+    }
+
+    footer p {
+        margin: 10px 0;
+    }
+
+    footer i {
+        color: red;
+    }
+
+    footer a {
+        color: #3c97bf;
+        text-decoration: none;
+    }
+
+
+
+    </style>
+
+</head>
+
+
+<body>
+    <h1 style="color:white; font-size: 24px;" th:text="${contactmessage}"></h1>
+
+    <div class="card-container">  
+        <img class="round" src="https://www.svgrepo.com/show/527954/user-id.svg" alt="user" style="height: 50%; width: 50%;" />
+        <h3 th:text="${profile.username}"></h3>
+        <h6 th:text="'Full name: '+${profile.fullname}"></h6>
+        <p th:text="'Email: '+${profile.user.email}"></p>
+        <p th:text="'Phone number: '+${profile.phoneNumber}"></p>
+        <div class="buttons">
+           
+            <a th:href="'tel:'+${profile.phoneNumber}" class="btn btn-outline-info">Call</a>
+            <a th:href="'mailto:'+${profile.user.email}" class="btn btn-outline-info">send mail</a>
+            <a  th:href="@{/store}" class="btn btn-outline-info">Go back</a>
+            
+        </div>
+
+
+        <div class="skills">
+            <h6>User's Book Offers</h6>
+            <ul>
+                <li th:each="bookOffer: ${bookOffers}" th:text="${bookOffer.title}"></li>
+               
+            </ul>
+        </div>
+
+        
+    </div>
+    
+    
+
+    
+</body>
+
+
+
+</html>
