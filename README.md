@@ -1,6 +1,6 @@
 # 📚 Social Book Store
 
-The **Social Book Store** is a social bookstore based on Spring Boot, where users can upload and exchange books for free.
+The **Social Book Store** is a bookstore based on Spring Boot, where users can upload and exchange books for free.
 
 ### Requirements
 
