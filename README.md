@@ -6,7 +6,8 @@ The **Social Book Store** is a bookstore based on Spring Boot, where users can u
 
 - Java 17+
 - Maven
-- MySQL 
+- MySQL
+- Spring Boot
 
 ### Installation instruc  tions
 
