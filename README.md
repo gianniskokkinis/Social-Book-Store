@@ -9,7 +9,7 @@ The **Social Book Store** is a bookstore based on Spring Boot, where users can u
 - MySQL
 - Spring Boot
 
-### Installation instruc  tions
+### Installation instructions
 
 1. clone repository
    ```sh
